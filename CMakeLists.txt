@@ -17,4 +17,41 @@ if (ENABLE_UT)
     set_target_properties(gtest_main PROPERTIES FOLDER extern)
 endif()
 
+function(add_ut)
+    if (ENABLE_UT)
+        set(options)
+        set(oneValueArgs TESTED_MODULE)
+        set(multiValueArgs SOURCES)
+        cmake_parse_arguments(UT "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+        set(UT_TESTS_MODULE ${UT_TESTED_MODULE}UT)
+        list(TRANSFORM UT_SOURCES PREPEND tests/)
+
+        add_executable(
+                ${UT_TESTS_MODULE}
+                ${UT_SOURCES}
+        )
+
+        add_test(
+                NAME ${UT_TESTS_MODULE}
+                COMMAND ${UT_TESTS_MODULE}
+        )
+
+        target_include_directories(
+                ${UT_TESTS_MODULE}
+                PRIVATE
+                $<TARGET_PROPERTY:${UT_TESTED_MODULE},INCLUDE_DIRECTORIES>
+        )
+
+        target_link_libraries(
+                ${UT_TESTS_MODULE}
+                PRIVATE
+                ${UT_TESTED_MODULE}
+                gtest
+                gmock
+                gtest_main
+        )
+    endif()
+endfunction()
+
 add_subdirectory(src)
