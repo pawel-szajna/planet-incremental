@@ -1,6 +1,7 @@
 #include "Tracked.hpp"
 
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
 using namespace ::testing;
 
@@ -82,4 +83,30 @@ TYPED_TEST(TrackedBasicTests,
 
     ASSERT_EQ(valueA / valueB, sutA / sutB);
     ASSERT_EQ(valueA / valueB, sutA / valueB);
+}
+
+TYPED_TEST(TrackedBasicTests,
+           shouldIterateOverHistory)
+{
+    auto sut = this->make_sut(0);
+    sut += 1;
+    sut *= 2;
+    sut -= 2;
+
+    ASSERT_THAT(sut, ElementsAre(0, 1, 2, 0));
+}
+
+TYPED_TEST(TrackedBasicTests,
+           historiesShouldBeIndependent)
+{
+    auto sut = this->make_sut(10);
+    sut *= 2;
+
+    ASSERT_THAT(sut, ElementsAre(10, 20));
+
+    auto otherSut = sut + TypeParam{5};
+    sut += 10;
+
+    ASSERT_THAT(sut, ElementsAre(10, 20, 30));
+    ASSERT_THAT(otherSut, ElementsAre(10, 20, 25));
 }
