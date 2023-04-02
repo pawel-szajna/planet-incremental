@@ -11,6 +11,10 @@ namespace Game
 {
 class Game
 {
+#if defined(PLATFORM_WEB)
+    friend void callLoop(void* gamePtr);
+#endif
+
 public:
 
     Game();
@@ -18,6 +22,12 @@ public:
 
     void start();
 
+private:
+
+    void loop();
+    void executeLoop();
+
     std::unique_ptr<World::Universe> universe{};
+
 };
 }

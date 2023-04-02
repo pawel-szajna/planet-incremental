@@ -7,6 +7,12 @@ set(CMAKE_CXX_STANDARD 23)
 option(ENABLE_UT "Enable unit tests" ON)
 option(ENABLE_DOCS "Enable docs generation" OFF)
 
+if(EMSCRIPTEN)
+    set(PLATFORM Web)
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY")
+    set(CMAKE_EXECUTABLE_SUFFIX ".html")
+endif()
+
 if (ENABLE_UT)
     enable_testing()
     include(GoogleTest)
