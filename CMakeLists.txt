@@ -3,6 +3,7 @@ project(planet_incremental CXX)
 set(CMAKE_CXX_STANDARD 23)
 
 option(ENABLE_UT "Enable unit tests" ON)
+option(ENABLE_DOCS "Enable docs generation" OFF)
 
 if (ENABLE_UT)
     enable_testing()
@@ -15,6 +16,10 @@ if (ENABLE_UT)
     set_target_properties(gmock PROPERTIES FOLDER extern)
     set_target_properties(gtest_main PROPERTIES FOLDER extern)
     set_target_properties(gtest_main PROPERTIES FOLDER extern)
+endif()
+
+if(ENABLE_DOCS)
+    add_subdirectory(docs)
 endif()
 
 function(add_ut)
@@ -137,7 +142,7 @@ function(add_module)
         string(TOLOWER ${MODULE_NAME} MODULE_LOWERCASE)
         target_include_directories(
             ${MODULE_NAME}
-            INTERFACE
+            PUBLIC
                 include
             PRIVATE
                 include/${MODULE_LOWERCASE}

@@ -1,6 +1,10 @@
 add_module(
     NAME World
-    TYPE INTERFACE
+    TYPE STATIC
     SOURCES
-    TESTS
+        Generator.cpp
+        Node.cpp
+        Planet.cpp
+        System.cpp
+        Universe.cpp
 )
