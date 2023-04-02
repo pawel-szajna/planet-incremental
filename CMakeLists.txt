@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.21)
 project(planet_incremental CXX)
+
+set(CMAKE_C_STANDARD 17)
 set(CMAKE_CXX_STANDARD 23)
 
 option(ENABLE_UT "Enable unit tests" ON)
@@ -172,5 +174,7 @@ function(add_module)
         message("Notice: module ${MODULE_NAME} has no unit tests defined.")
     endif()
 endfunction()
+
+add_subdirectory(lib/raylib)
 
 add_subdirectory(src)
