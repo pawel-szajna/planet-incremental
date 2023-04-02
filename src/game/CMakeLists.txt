@@ -3,4 +3,7 @@ add_module(
     TYPE STATIC
     SOURCES
         Game.cpp
+    DEPENDENCIES
+        raylib
+        World
 )
