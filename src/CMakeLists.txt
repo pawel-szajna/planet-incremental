@@ -1,3 +1,4 @@
+add_subdirectory(world)
 add_subdirectory(resources)
 
 add_module(

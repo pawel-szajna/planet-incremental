@@ -164,7 +164,7 @@ function(add_module)
             SOURCES ${MODULE_TESTS}
         )
     elseif(NOT MODULE_TYPE STREQUAL EXECUTABLE)
-        message(WARNING "Module ${MODULE_NAME} has no unit tests defined!")
+        message("Notice: module ${MODULE_NAME} has no unit tests defined.")
     endif()
 endfunction()
 
