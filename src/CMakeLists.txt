@@ -1,6 +1,8 @@
 add_subdirectory(resources)
 
-add_executable(
-        game
+add_module(
+    NAME game
+    TYPE EXECUTABLE
+    SOURCES
         main.cpp
 )

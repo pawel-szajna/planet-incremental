@@ -1,18 +1,9 @@
-set(MODULE Resources)
-
-add_library(
-        ${MODULE}
-        INTERFACE
-)
-
-target_include_directories(
-        ${MODULE}
-        INTERFACE
-        include
-)
-
-add_ut(
-        TESTED_MODULE ${MODULE}
-        SOURCES
+add_module(
+    NAME Resources
+    TYPE STATIC
+    SOURCES
+        Resource.cpp
+    TESTS
+        ResourceTests.cpp
         TrackedTests.cpp
 )
