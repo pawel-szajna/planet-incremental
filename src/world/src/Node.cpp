@@ -2,7 +2,8 @@
 
 namespace World
 {
-Node::Node()
+Node::Node(std::string comment) :
+    comment{std::move(comment)}
 {}
 
 Node::~Node() = default;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace World
 {
 /**
@@ -9,7 +11,9 @@ class Node
 {
 public:
 
-    Node();
+    Node(std::string comment);
     ~Node();
+
+    std::string comment;
 };
 }

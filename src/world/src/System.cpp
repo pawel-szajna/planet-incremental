@@ -2,7 +2,10 @@
 
 namespace World
 {
-System::System() {}
+System::System()
+{
+    planets.emplace_back(Planet{});
+}
 
 System::~System() = default;
 }

@@ -1,6 +1,10 @@
 #pragma once
 
+#include "Node.hpp"
+
+#include <map>
 #include <string>
+#include <vector>
 
 namespace World
 {
@@ -16,6 +20,8 @@ public:
 
     std::string name;
     double distance;
+
+    std::map<std::pair<int, int>, std::vector<Node>> nodes;
 
 private:
 };

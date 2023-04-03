@@ -105,7 +105,7 @@ endfunction()
 function(add_module)
     set(OPTIONS HAS_MOCKS)
     set(VALUE_ARGS NAME TYPE)
-    set(LIST_ARGS SOURCES TESTS DEPENDENCIES PUBLIC_DEPENDENCIES)
+    set(LIST_ARGS SOURCES TESTS DEPENDENCIES PUBLIC_DEPENDENCIES INCLUDES)
     cmake_parse_arguments(
         MODULE
         "${OPTIONS}"
@@ -154,6 +154,7 @@ function(add_module)
                 include
             PRIVATE
                 include/${MODULE_LOWERCASE}
+                ${MODULE_INCLUDES}
         )
     endif()
 
@@ -182,5 +183,4 @@ function(add_module)
 endfunction()
 
 add_subdirectory(lib/raylib)
-
 add_subdirectory(src)

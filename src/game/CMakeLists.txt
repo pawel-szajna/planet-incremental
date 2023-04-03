@@ -6,4 +6,7 @@ add_module(
     DEPENDENCIES
         raylib
         World
+    INCLUDES
+        ${PROJECT_SOURCE_DIR}/lib/raygui/src
+        ${PROJECT_SOURCE_DIR}/lib/raygui/styles
 )
