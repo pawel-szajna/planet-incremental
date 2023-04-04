@@ -83,6 +83,16 @@ function(add_ut)
                 $<TARGET_PROPERTY:${UT_TESTED_MODULE},INCLUDE_DIRECTORIES>
         )
 
+        get_target_property(UT_TESTED_MODULE_TYPE ${UT_TESTED_MODULE} TYPE)
+        if(${UT_TESTED_MODULE_TYPE} STREQUAL INTERFACE_LIBRARY)
+            string(TOLOWER ${UT_TESTED_MODULE} UT_TESTED_MODULE_DIRECTORY)
+            target_include_directories(
+                ${UT_TESTS_MODULE}
+                PRIVATE
+                    include/${UT_TESTED_MODULE_DIRECTORY}
+            )
+        endif()
+
         target_link_libraries(
             ${UT_TESTS_MODULE}
             PRIVATE

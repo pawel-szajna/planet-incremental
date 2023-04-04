@@ -1,8 +1,6 @@
 add_module(
     NAME Statistics
-    TYPE STATIC
-    SOURCES
-        History.cpp
+    TYPE INTERFACE
     TESTS
         HistoryTests.cpp
 )
