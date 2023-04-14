@@ -23,6 +23,7 @@ public:
 
     [[nodiscard]] bool empty() const noexcept { return data.empty(); }
     [[nodiscard]] size_t size() const noexcept { return data.size(); }
+    [[nodiscard]] constexpr size_t limit() const noexcept { return Limit; }
 
     void emplace(value_type value)
     {
