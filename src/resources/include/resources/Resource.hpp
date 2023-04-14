@@ -6,14 +6,14 @@
 
 class Resource
 {
-    using Number = Tracked<double>;
+    using Number = double;
 
     explicit Resource(std::string name);
     ~Resource();
 
     Number& operator*() noexcept;
     const Number& operator*() const noexcept;
-    operator Number::value_type() const noexcept; // NOLINT(google-explicit-constructor)
+    operator Number() const noexcept; // NOLINT(google-explicit-constructor)
 
     const std::string& getName() { return name; }
 

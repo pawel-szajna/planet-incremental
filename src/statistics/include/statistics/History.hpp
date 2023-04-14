@@ -2,9 +2,11 @@
 
 #include <deque>
 
+#include "common/types.hpp"
+
 namespace Statistics
 {
-template<size_t Limit, typename Number = int>
+template<size_t Limit, typename Number = Common::Number>
 class History
 {
 public:

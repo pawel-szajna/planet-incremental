@@ -6,9 +6,9 @@ Resource::Resource(std::string name) :
 
 Resource::~Resource() = default;
 
-Resource::operator Number::value_type() const noexcept
+Resource::operator Number() const noexcept
 {
-    return value.operator Number::value_type();
+    return operator*();
 }
 
 Resource::Number& Resource::operator*() noexcept

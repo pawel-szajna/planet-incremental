@@ -3,4 +3,6 @@ add_module(
     TYPE INTERFACE
     TESTS
         HistoryTests.cpp
+    DEPENDENCIES
+        Common
 )

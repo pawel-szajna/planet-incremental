@@ -120,7 +120,7 @@ function(add_module)
             RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
     )
 
-    if(${MODULE_TYPE} STREQUAL "INTERFACE")
+    if(${MODULE_TYPE} STREQUAL INTERFACE)
         target_include_directories(
             ${MODULE_NAME}
             INTERFACE
@@ -141,13 +141,25 @@ function(add_module)
     list(LENGTH MODULE_DEPENDENCIES DEPENDENCIES_COUNT)
     list(LENGTH MODULE_PUBLIC_DEPENDENCIES PUBLIC_DEPENDENCIES_COUNT)
     if(DEPENDENCIES_COUNT GREATER 0 OR PUBLIC_DEPENDENCIES_COUNT GREATER 0)
-        target_link_libraries(
-            ${MODULE_NAME}
-            PRIVATE
-                ${MODULE_DEPENDENCIES}
-            PUBLIC
-                ${MODULE_PUBLIC_DEPENDENCIES}
-        )
+        if(${MODULE_TYPE} STREQUAL INTERFACE)
+            if(PUBLIC_DEPENDENCIES_COUNT GREATER 0)
+                message("Warning: module ${MODULE_NAME} has PUBLIC_DEPENDENCIES defined, but as an INTERFACE module, all its dependencies are treated as INTERFACE.")
+            endif()
+            target_link_libraries(
+                ${MODULE_NAME}
+                INTERFACE
+                    ${MODULE_DEPENDENCIES}
+                    ${MODULE_PUBLIC_DEPENDENCIES}
+            )
+        else()
+            target_link_libraries(
+                ${MODULE_NAME}
+                PRIVATE
+                    ${MODULE_DEPENDENCIES}
+                PUBLIC
+                    ${MODULE_PUBLIC_DEPENDENCIES}
+            )
+        endif()
     endif()
 
     list(LENGTH MODULE_TESTS TESTS_COUNT)
