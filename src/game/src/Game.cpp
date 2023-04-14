@@ -30,7 +30,9 @@ Game::~Game() = default;
 
 void Game::start()
 {
-    InitWindow(640, 480, "planet incremental");
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT);
+    InitWindow(1024, 768, "planet incremental");
+    SetWindowMinSize(640, 480);
     SetTargetFPS(60);
     GuiLoadStyleDark();
     camera.position = { 10.0f, 10.0f, 10.0f };
