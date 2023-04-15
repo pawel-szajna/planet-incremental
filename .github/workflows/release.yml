@@ -27,7 +27,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: 'build/bin/'
+          source_file: 'build/bin/*'
           destination_repo: 'planetincremental/planetincremental.github.io'
           destination_folder: '.'
           destination_branch: 'master'
