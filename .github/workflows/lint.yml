@@ -1,0 +1,17 @@
+name: Static checks
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run clang-format
+        working-directory: ${{github.workspace}}
+        run: tool/format_code
+      - name: Check if formatting is valid
+        working-directory: ${{github.workspace}}
+        run: test -z "$(git diff)"
