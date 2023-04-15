@@ -23,10 +23,10 @@ void callLoop(void* gamePtr)
 
 extern "C"
 {
-void updateSize(int width, int height)
-{
-    SetWindowSize(width, height);
-}
+    void updateSize(int width, int height)
+    {
+        SetWindowSize(width, height);
+    }
 }
 #endif
 
