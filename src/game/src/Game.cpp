@@ -20,6 +20,14 @@ void callLoop(void* gamePtr)
 {
     static_cast<Game*>(gamePtr)->loop();
 }
+
+extern "C"
+{
+void updateSize(int width, int height)
+{
+    SetWindowSize(width, height);
+}
+}
 #endif
 
 Camera3D camera{};

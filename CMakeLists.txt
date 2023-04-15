@@ -18,6 +18,8 @@ if(EMSCRIPTEN)
     add_link_options(-sWASM=1)
     add_link_options(-sALLOW_MEMORY_GROWTH)
     add_link_options(-sASYNCIFY)
+    add_link_options(-sEXPORTED_FUNCTIONS=_main,_updateSize)
+    add_link_options(-sEXPORTED_RUNTIME_METHODS=ccall,cwrap)
 endif()
 
 if (ENABLE_UT)

@@ -14,6 +14,9 @@
     var Module = {
         canvas: (function() { return document.getElementById('canvas'); })()
     };
+    window.onresize = () => {
+        _updateSize(window.innerWidth, window.innerHeight);
+    };
 </script>
 <script src="incremental.js"></script>
 </body>
