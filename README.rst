@@ -19,7 +19,9 @@ incremental". The game itself is written in C++, and can be built for numerous t
 web browser (as this is where majority of players seem to be playing idle/incremental games), though the
 target platform is not set in stone.
 
-The source code of this game is released under the `MIT license <LICENSE>`_.
+The source code of this game is released under the `MIT license <LICENSE>`_. A complete list of other works
+used in this project is available in the `dependencies chapter <https://planetincremental.github.io/docs/dependencies.html>`_
+of the documentation.
 
 To start with the development, check out the `getting started chapter <https://planetincremental.github.io/docs/getting_started.html>`_
 of the docs.
