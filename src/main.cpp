@@ -1,17 +1,26 @@
+#include "common/logger.hpp"
 #include "game/Game.hpp"
 
-#include <iostream>
 #include <stdexcept>
 
 int main()
+#if not defined(DEBUG_MODE)
 try
+#endif
 {
-    Game::Game game;
-    game.start();
+    logInfo("Startup of planet-incremental");
+    {
+        Game::Game game;
+        game.start();
+    }
+    logInfo("Finished");
+
     return 0;
 }
-catch (std::exception e)
+#if not defined(DEBUG_MODE)
+catch (const std::exception& e)
 {
-    std::cerr << e.what() << std::endl;
+    logCritical(e.what());
     return 1;
 }
+#endif

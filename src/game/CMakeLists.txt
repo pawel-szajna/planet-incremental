@@ -4,6 +4,7 @@ add_module(
     SOURCES
         Game.cpp
     DEPENDENCIES
+        Common
         raylib
         World
     SYSTEM_INCLUDES

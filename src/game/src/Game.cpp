@@ -1,6 +1,9 @@
 #include "Game.hpp"
 
+#include "common/logger.hpp"
 #include "world/Universe.hpp"
+
+#include <spdlog/fmt/bundled/printf.h>
 
 // clang-format off
 // Those headers must not be sorted alphabetically.
@@ -30,10 +33,36 @@ extern "C"
 }
 #endif
 
+void raylibLog(int severity, const char* text, va_list args)
+{
+    static char formatted[256]; // MAX_TRACELOG_MSG_LENGTH
+    vsprintf(formatted, text, args);
+    switch (severity)
+    {
+    case LOG_DEBUG:
+        spdlog::debug("[raylib] {}", formatted);
+        return;
+    case LOG_WARNING:
+        spdlog::warn("[raylib] {}", formatted);
+        return;
+    case LOG_ERROR:
+        spdlog::error("[raylib] {}", formatted);
+        return;
+    case LOG_FATAL:
+        spdlog::critical("[raylib] {}", formatted);
+        return;
+    case LOG_INFO:
+    default:
+        spdlog::info("[raylib] {}", formatted);
+        return;
+    }
+}
+
 Camera3D camera{};
 
 Game::Game()
 {
+    SetTraceLogCallback(raylibLog);
     universe = std::make_unique<World::Universe>();
 }
 

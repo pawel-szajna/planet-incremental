@@ -42,4 +42,10 @@ if(ENABLE_DOCS)
 endif()
 
 add_subdirectory(lib/raylib SYSTEM)
+add_subdirectory(lib/spdlog)
+
+if(CMAKE_BUILD_TYPE STREQUAL Debug)
+    add_compile_definitions(DEBUG_MODE ENABLED)
+endif()
+
 add_subdirectory(src)

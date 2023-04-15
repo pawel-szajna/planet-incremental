@@ -10,6 +10,7 @@ add_module(
     SOURCES
         main.cpp
     DEPENDENCIES
+        Common
         Game
 )
 
