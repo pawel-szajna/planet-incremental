@@ -39,4 +39,6 @@ jobs:
         run: CLANG_FORMAT_COMMAND=clang-format-16 tool/format_code
       - name: Check if formatting is valid
         working-directory: ${{github.workspace}}
-        run: test -z "$(git diff)"
+        run: |
+          git diff
+          test -z "$(git diff)"
