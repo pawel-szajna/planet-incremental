@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+REPO_PATH=$(git rev-parse --show-toplevel)
+
+echo "Executing code formatters, repo root is ${REPO_PATH}"
+
+"${REPO_PATH}/tool/format_code"
