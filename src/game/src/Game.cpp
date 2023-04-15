@@ -62,6 +62,7 @@ Camera3D camera{};
 
 Game::Game()
 {
+    logDebug("Constructing main structures");
     SetTraceLogCallback(raylibLog);
     universe = std::make_unique<World::Universe>();
 }
@@ -70,6 +71,7 @@ Game::~Game() = default;
 
 void Game::start()
 {
+    logDebug("Starting the game");
     SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT);
     InitWindow(1024, 768, "planet incremental");
     SetWindowMinSize(640, 480);

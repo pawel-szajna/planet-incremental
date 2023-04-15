@@ -7,4 +7,6 @@ add_module(
         Planet.cpp
         System.cpp
         Universe.cpp
+    DEPENDENCIES
+        Common
 )
