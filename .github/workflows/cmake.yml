@@ -20,3 +20,19 @@ jobs:
     - name: Test
       working-directory: ${{github.workspace}}/build
       run: ctest -C ${{env.BUILD_TYPE}}
+  static-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Obtain clang-format-16
+        run: |
+          sudo add-apt-repository 'deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-16 main'
+          wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+          sudo apt-get update
+          sudo apt-get install -y clang-format-16
+      - name: Run clang-format
+        working-directory: ${{github.workspace}}
+        run: CLANG_FORMAT_COMMAND=clang-format-16 tool/format_code
+      - name: Check if formatting is valid
+        working-directory: ${{github.workspace}}
+        run: test -z "$(git diff)"
