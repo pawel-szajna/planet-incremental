@@ -5,13 +5,13 @@ on:
   pull_request:
     branches: [ "master" ]
 jobs:
-  build:
+  static-checks:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Run clang-format
         working-directory: ${{github.workspace}}
-        run: tool/format_code
+        run: CLANG_FORMAT_COMMAND=clang-format-16 tool/format_code
       - name: Check if formatting is valid
         working-directory: ${{github.workspace}}
         run: test -z "$(git diff)"

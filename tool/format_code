@@ -2,7 +2,7 @@
 
 echo "Formatting code with clang-format..."
 
-CLANG_FORMAT_COMMAND="clang-format"
+: "${CLANG_FORMAT_COMMAND:=clang-format}"
 
 if ! command -v "${CLANG_FORMAT_COMMAND}" > /dev/null; then
     >&2 echo "-- Error: ${CLANG_FORMAT_COMMAND} not found!"
