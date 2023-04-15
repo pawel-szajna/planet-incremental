@@ -2,13 +2,16 @@
 
 #include "world/Universe.hpp"
 
+// clang-format off
+// Those headers must not be sorted alphabetically.
 #include <raylib.h>
 #define RAYGUI_IMPLEMENTATION
-#include <dark/dark.h>
 #include <raygui.h>
+#include <dark/dark.h>
 #if defined(PLATFORM_WEB)
     #include <emscripten/emscripten.h>
 #endif
+// clang-format on
 
 namespace Game
 {

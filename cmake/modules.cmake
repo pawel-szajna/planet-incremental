@@ -83,7 +83,7 @@ endfunction()
 function(add_module)
     set(OPTIONS HAS_MOCKS)
     set(VALUE_ARGS NAME TYPE)
-    set(LIST_ARGS SOURCES TESTS DEPENDENCIES PUBLIC_DEPENDENCIES INCLUDES)
+    set(LIST_ARGS SOURCES TESTS DEPENDENCIES PUBLIC_DEPENDENCIES INCLUDES SYSTEM_INCLUDES)
     cmake_parse_arguments(
         MODULE
         "${OPTIONS}"
@@ -120,12 +120,22 @@ function(add_module)
             RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
     )
 
+    list(LENGTH MODULE_SYSTEM_INCLUDES SYSTEM_INCLUDES_COUNT)
+
     if(${MODULE_TYPE} STREQUAL INTERFACE)
         target_include_directories(
             ${MODULE_NAME}
             INTERFACE
                 include
+                ${MODULE_INCLUDES}
         )
+        if(SYSTEM_INCLUDES_COUNT GREATER 0)
+            target_include_directories(
+                ${MODULE_NAME}
+                SYSTEM INTERFACE
+                    ${MODULE_SYSTEM_INCLUDES}
+            )
+        endif()
     else()
         string(TOLOWER ${MODULE_NAME} MODULE_LOWERCASE)
         target_include_directories(
@@ -136,6 +146,13 @@ function(add_module)
                 include/${MODULE_LOWERCASE}
                 ${MODULE_INCLUDES}
         )
+        if(SYSTEM_INCLUDES_COUNT GREATER 0)
+            target_include_directories(
+                ${MODULE_NAME}
+                SYSTEM PRIVATE
+                    ${MODULE_SYSTEM_INCLUDES}
+            )
+        endif()
     endif()
 
     list(LENGTH MODULE_DEPENDENCIES DEPENDENCIES_COUNT)

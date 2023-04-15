@@ -6,7 +6,7 @@
 
 namespace Statistics
 {
-template<size_t Limit, typename Number = Common::Number>
+template<Common::Size Limit, typename Number = Common::Number>
 class History
 {
 public:

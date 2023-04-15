@@ -39,5 +39,5 @@ if(ENABLE_DOCS)
     add_subdirectory(docs)
 endif()
 
-add_subdirectory(lib/raylib)
+add_subdirectory(lib/raylib SYSTEM)
 add_subdirectory(src)

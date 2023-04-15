@@ -2,6 +2,7 @@
 
 #include <array>
 #include <deque>
+#include <utility>
 
 #include "common/constants.hpp"
 #include "common/types.hpp"
@@ -13,8 +14,8 @@ class Tracker
 {
 public:
 
-    template<size_t Length>
-    using HistoryData = std::pair<History<Length>, size_t>;
+    template<Common::Size Length>
+    using HistoryData = std::pair<History<Length>, Common::Size>;
 
     constexpr static auto SHORT_HISTORY_TIME{30};
     constexpr static auto SHORT_HISTORY_RESOLUTION{1};
