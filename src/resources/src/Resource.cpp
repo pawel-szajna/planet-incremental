@@ -1,8 +1,9 @@
 #include "Resource.hpp"
 
-Resource::Resource(std::string name) :
-    name{std::move(name)}
-{}
+Resource::Resource(std::string name)
+    : name{std::move(name)}
+{
+}
 
 Resource::~Resource() = default;
 

@@ -3,8 +3,7 @@
 namespace
 {
 template<class MaybePair>
-concept is_pair = requires(MaybePair pair)
-{
+concept is_pair = requires(MaybePair pair) {
     std::tuple_size_v<MaybePair> == 2;
     std::get<0>(pair);
     std::get<1>(pair);
@@ -24,7 +23,7 @@ void update(HistoryType& historyData, Common::Number value)
 
     --ticks;
 }
-}
+} // namespace
 
 namespace Statistics
 {
@@ -59,4 +58,4 @@ const Tracker::VeryLongHistory& Tracker::getVeryLongHistory() const
 {
     return veryLongHistory.first;
 }
-}
+} // namespace Statistics

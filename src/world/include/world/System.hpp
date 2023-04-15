@@ -20,6 +20,5 @@ public:
     std::vector<Planet> planets;
 
 private:
-
 };
-}
+} // namespace World

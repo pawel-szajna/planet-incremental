@@ -1,21 +1,21 @@
 #include "History.hpp"
 
-#include <gtest/gtest.h>
 #include <gmock/gmock.h>
+#include <gtest/gtest.h>
 
 using namespace ::testing;
 
 namespace
 {
-using Number = int;
+using Number          = int;
 constexpr size_t Size = 5;
-}
+} // namespace
 
 namespace Statistics
 {
 struct HistoryTests : public Test
 {
-    template<typename ...Args>
+    template<typename... Args>
     void emplace(Args&&... args)
     {
         (sut.emplace(std::forward<Args>(args)), ...);
@@ -24,16 +24,14 @@ struct HistoryTests : public Test
     History<Size, Number> sut{};
 };
 
-TEST_F(HistoryTests,
-       shouldBeEmptyAfterConstruction)
+TEST_F(HistoryTests, shouldBeEmptyAfterConstruction)
 {
     EXPECT_TRUE(sut.empty());
     EXPECT_EQ(sut.size(), 0);
     EXPECT_EQ(sut.begin(), sut.end());
 }
 
-TEST_F(HistoryTests,
-       shouldContainElement)
+TEST_F(HistoryTests, shouldContainElement)
 {
     constexpr Number element = 2137;
 
@@ -44,8 +42,7 @@ TEST_F(HistoryTests,
     EXPECT_THAT(sut, ElementsAre(element));
 }
 
-TEST_F(HistoryTests,
-       shouldRemoveElementsAfterLimitIsReached)
+TEST_F(HistoryTests, shouldRemoveElementsAfterLimitIsReached)
 {
     emplace(1, 2, 3, 4, 5);
 
@@ -57,4 +54,4 @@ TEST_F(HistoryTests,
     EXPECT_EQ(sut.size(), 5);
     EXPECT_THAT(sut, ElementsAre(2, 3, 4, 5, 6));
 }
-}
+} // namespace Statistics

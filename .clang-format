@@ -1,10 +1,10 @@
 ---
 AlignAfterOpenBracket: Align
-AlignConsecutiveAssignments: false
+AlignConsecutiveAssignments: true
 AlignConsecutiveDeclarations: false
 AlignOperands: AlignAfterOperator
 AlignTrailingComments: true
-AllowAllArgumentsOnNextLine: true
+AllowAllArgumentsOnNextLine: false
 AllowAllConstructorInitializersOnNextLine: false
 AllowAllParametersOfDeclarationOnNextLine: true
 AllowShortBlocksOnASingleLine: Never
@@ -30,7 +30,7 @@ Cpp11BracedListStyle: true
 FixNamespaceComments: true
 IncludeBlocks: Preserve
 IndentCaseLabels: false
-IndentPPDirectives: AfterHash
+IndentPPDirectives: BeforeHash
 IndentWidth: 4
 IndentWrappedFunctionNames: false
 KeepEmptyLinesAtTheStartOfBlocks: false
@@ -62,4 +62,17 @@ AccessModifierOffset: -4
 EmptyLineAfterAccessModifier: Always
 EmptyLineBeforeAccessModifier: Always
 PackConstructorInitializers: Never
-
+QualifierAlignment: Custom
+QualifierOrder: ['constexpr', 'const', 'inline', 'static', 'type']
+BreakAfterAttributes: Never
+InsertNewlineAtEOF: true
+IntegerLiteralSeparator:
+  Binary: 4
+  Decimal: 3
+  DecimalMinDigits: 5
+  Hex: 2
+  HexMinDigits: 6
+RequiresExpressionIndentation: OuterScope
+IndentRequiresClause: false
+InsertBraces: true
+SeparateDefinitionBlocks: Always

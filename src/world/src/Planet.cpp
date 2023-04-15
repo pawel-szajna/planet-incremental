@@ -11,4 +11,4 @@ Planet::Planet()
 }
 
 Planet::~Planet() = default;
-}
+} // namespace World

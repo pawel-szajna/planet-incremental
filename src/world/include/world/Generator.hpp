@@ -4,6 +4,5 @@ namespace World
 {
 class Generator
 {
-
 };
-}
+} // namespace World

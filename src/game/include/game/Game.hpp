@@ -28,6 +28,5 @@ private:
     void executeLoop();
 
     std::unique_ptr<World::Universe> universe{};
-
 };
-}
+} // namespace Game

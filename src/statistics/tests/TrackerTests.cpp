@@ -1,7 +1,7 @@
 #include "Tracker.hpp"
 
-#include <gtest/gtest.h>
 #include <gmock/gmock.h>
+#include <gtest/gtest.h>
 
 #include <numeric>
 
@@ -9,9 +9,9 @@ using namespace ::testing;
 
 namespace
 {
-constexpr auto TicksCount = 10'000;
+constexpr auto TicksCount              = 10'000;
 constexpr Common::Number ResourceCount = 2137;
-}
+} // namespace
 
 namespace Statistics
 {
@@ -50,13 +50,25 @@ TEST_F(TrackerTests, shouldKeepHistoryInIntervals)
 
     std::vector<Common::Number> mediums(200);
     std::iota(mediums.begin(), mediums.end(), 467);
-    std::transform(mediums.begin(), mediums.end(), mediums.begin(),
-                   [] (auto& n) { n *= 15; return n; });
+    std::transform(mediums.begin(),
+                   mediums.end(),
+                   mediums.begin(),
+                   [](auto& n)
+                   {
+                       n *= 15;
+                       return n;
+                   });
 
     std::vector<Common::Number> longs(34);
     std::iota(longs.begin(), longs.end(), 0);
-    std::transform(longs.begin(), longs.end(), longs.begin(),
-                   [] (auto n) { n *= 300; return n; });
+    std::transform(longs.begin(),
+                   longs.end(),
+                   longs.begin(),
+                   [](auto n)
+                   {
+                       n *= 300;
+                       return n;
+                   });
 
     std::vector<Common::Number> veryLongs{0, 6000};
 
@@ -64,6 +76,5 @@ TEST_F(TrackerTests, shouldKeepHistoryInIntervals)
     EXPECT_THAT(sut.getMediumHistory(), ElementsAreArray(mediums));
     EXPECT_THAT(sut.getLongHistory(), ElementsAreArray(longs));
     EXPECT_THAT(sut.getVeryLongHistory(), ElementsAreArray(veryLongs));
-
 }
-}
+} // namespace Statistics

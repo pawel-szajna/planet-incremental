@@ -16,4 +16,4 @@ public:
 
     std::string comment;
 };
-}
+} // namespace World

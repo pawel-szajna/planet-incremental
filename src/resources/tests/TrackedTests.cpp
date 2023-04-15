@@ -1,7 +1,7 @@
 #include "Tracked.hpp"
 
-#include <gtest/gtest.h>
 #include <gmock/gmock.h>
+#include <gtest/gtest.h>
 
 using namespace ::testing;
 
@@ -9,6 +9,7 @@ template<typename T>
 class TrackedBasicTests : public Test
 {
 protected:
+
     template<typename... Args>
     auto make_sut(Args&&... args)
     {
@@ -19,16 +20,14 @@ protected:
 using TrackedBasicTestsTypes = Types<int, unsigned, double>;
 TYPED_TEST_SUITE(TrackedBasicTests, TrackedBasicTestsTypes);
 
-TYPED_TEST(TrackedBasicTests,
-           shouldCarryTypeDefaultValueOnConstruction)
+TYPED_TEST(TrackedBasicTests, shouldCarryTypeDefaultValueOnConstruction)
 {
     auto sut = this->make_sut();
     ASSERT_EQ(*sut, TypeParam{});
     ASSERT_TRUE(sut == TypeParam{});
 }
 
-TYPED_TEST(TrackedBasicTests,
-           shouldAssignAndReturnValueOfUnderlyingType)
+TYPED_TEST(TrackedBasicTests, shouldAssignAndReturnValueOfUnderlyingType)
 {
     auto sut = this->make_sut(4);
     ASSERT_EQ(*sut, TypeParam{4});
@@ -45,8 +44,7 @@ TYPED_TEST(TrackedBasicTests,
     ASSERT_EQ(value, TypeParam{5});
 }
 
-TYPED_TEST(TrackedBasicTests,
-           shouldCompareMultipleTrackedValues)
+TYPED_TEST(TrackedBasicTests, shouldCompareMultipleTrackedValues)
 {
     auto sut1 = this->make_sut(2);
     auto sut2 = this->make_sut(3);
@@ -63,13 +61,12 @@ TYPED_TEST(TrackedBasicTests,
     ASSERT_NE(sut2, sut3);
 }
 
-TYPED_TEST(TrackedBasicTests,
-           shouldPerformBasicOperations)
+TYPED_TEST(TrackedBasicTests, shouldPerformBasicOperations)
 {
     TypeParam valueA = 2;
     TypeParam valueB = 3;
-    auto sutA = this->make_sut(valueA);
-    auto sutB = this->make_sut(valueB);
+    auto sutA        = this->make_sut(valueA);
+    auto sutB        = this->make_sut(valueB);
 
     ASSERT_EQ(valueA + valueB, sutA + sutB);
     ASSERT_EQ(valueA + valueB, sutB + sutA);
@@ -85,8 +82,7 @@ TYPED_TEST(TrackedBasicTests,
     ASSERT_EQ(valueA / valueB, sutA / valueB);
 }
 
-TYPED_TEST(TrackedBasicTests,
-           shouldIterateOverHistory)
+TYPED_TEST(TrackedBasicTests, shouldIterateOverHistory)
 {
     auto sut = this->make_sut(0);
     sut += 1;
@@ -96,8 +92,7 @@ TYPED_TEST(TrackedBasicTests,
     ASSERT_THAT(sut, ElementsAre(0, 1, 2, 0));
 }
 
-TYPED_TEST(TrackedBasicTests,
-           historiesShouldBeIndependent)
+TYPED_TEST(TrackedBasicTests, historiesShouldBeIndependent)
 {
     auto sut = this->make_sut(10);
     sut *= 2;
