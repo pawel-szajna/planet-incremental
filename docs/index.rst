@@ -7,6 +7,7 @@ This document is a technical overview of the *planet incremental* project.
    :maxdepth: 2
    :caption: Contents
 
+   getting_started
    style
    code
 
