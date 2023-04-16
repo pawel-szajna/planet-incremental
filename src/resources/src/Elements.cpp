@@ -1,5 +1,7 @@
 #include "Elements.hpp"
 
+#include <algorithm>
+
 namespace Resources
 {
 Elements::Elements()
