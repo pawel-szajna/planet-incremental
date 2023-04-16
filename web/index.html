@@ -19,5 +19,10 @@
     };
 </script>
 <script src="incremental.js"></script>
+<script type="text/javascript">
+    Module['onRuntimeInitialized'] = () => {
+        setTimeout(() => window.onresize(null), 100);
+    };
+</script>
 </body>
 </html>
