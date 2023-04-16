@@ -7,9 +7,9 @@ namespace World
 class Universe;
 }
 
-namespace Game
+namespace Front
 {
-class Game
+class Front
 {
 #if defined(PLATFORM_WEB)
     friend void callLoop(void* gamePtr);
@@ -17,8 +17,8 @@ class Game
 
 public:
 
-    Game();
-    ~Game();
+    Front();
+    ~Front();
 
     void start();
 
@@ -29,4 +29,4 @@ private:
 
     std::unique_ptr<World::Universe> universe{};
 };
-} // namespace Game
+} // namespace Front

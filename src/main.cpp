@@ -1,5 +1,5 @@
 #include "common/logger.hpp"
-#include "game/Game.hpp"
+#include "front/Front.hpp"
 
 #if not defined(DEBUG_MODE)
     #include <stdexcept>
@@ -15,8 +15,8 @@ try
 #endif
     logInfo("Startup of planet-incremental");
     {
-        Game::Game game;
-        game.start();
+        Front::Front gameFrontEnd;
+        gameFrontEnd.start();
     }
     logInfo("Finished");
 

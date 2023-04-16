@@ -1,8 +1,8 @@
 add_module(
-    NAME Game
+    NAME Front
     TYPE STATIC
     SOURCES
-        Game.cpp
+        Front.cpp
     DEPENDENCIES
         Common
         raylib

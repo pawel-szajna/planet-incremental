@@ -1,5 +1,5 @@
 add_subdirectory(common)
-add_subdirectory(game)
+add_subdirectory(front)
 add_subdirectory(world)
 add_subdirectory(resources)
 add_subdirectory(statistics)
@@ -11,7 +11,7 @@ add_module(
         main.cpp
     DEPENDENCIES
         Common
-        Game
+        Front
 )
 
 if(EMSCRIPTEN)

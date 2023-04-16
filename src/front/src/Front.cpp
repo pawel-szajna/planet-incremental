@@ -1,4 +1,4 @@
-#include "Game.hpp"
+#include "Front.hpp"
 
 #include "common/logger.hpp"
 #include "world/Universe.hpp"
@@ -16,7 +16,7 @@
 #endif
 // clang-format on
 
-namespace Game
+namespace Front
 {
 #if defined(PLATFORM_WEB)
 void callLoop(void* gamePtr)
@@ -61,16 +61,16 @@ void raylibLog(int severity, const char* text, va_list args)
 
 Camera3D camera{};
 
-Game::Game()
+Front::Front()
 {
     logDebug("Constructing main structures");
     SetTraceLogCallback(raylibLog);
     universe = std::make_unique<World::Universe>();
 }
 
-Game::~Game() = default;
+Front::~Front() = default;
 
-void Game::start()
+void Front::start()
 {
     logDebug("Starting the game");
     SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT);
@@ -88,7 +88,7 @@ void Game::start()
     CloseWindow();
 }
 
-void Game::loop()
+void Front::loop()
 {
     BeginDrawing();
     ClearBackground(BLACK);
@@ -139,7 +139,7 @@ void Game::loop()
     EndDrawing();
 }
 
-void Game::executeLoop()
+void Front::executeLoop()
 {
 #if defined(PLATFORM_WEB)
     emscripten_set_main_loop_arg(&callLoop, this, 0, 1);
@@ -150,4 +150,4 @@ void Game::executeLoop()
     }
 #endif
 }
-} // namespace Game
+} // namespace Front
