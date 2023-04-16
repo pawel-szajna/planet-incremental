@@ -11,6 +11,9 @@ struct Element
     using Color = std::tuple<int, int, int>;
 
     int id;
+    int atomicNumber;
+    float atomicWeight;
+    std::string symbol;
     std::string name;
     Color color;
 };
