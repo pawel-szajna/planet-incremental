@@ -7,7 +7,8 @@
 namespace World
 {
 /**
- * A planetary system, consisting of a star along with planets.
+ * @class System
+ * @brief A planetary system, consisting of a star along with planets.
  */
 class System
 {
