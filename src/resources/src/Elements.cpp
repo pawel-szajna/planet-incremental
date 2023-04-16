@@ -1,11 +1,12 @@
 #include "Elements.hpp"
 
 #include <algorithm>
+#include <utility>
 
 namespace Resources
 {
 Elements::Elements()
-    : elements{Element{std::to_underlying(Type::Iron), "Iron", {141, 162, 196}}}
+    : elements{Element{std::to_underlying(Type::Iron), 26, 55.845, "Fe", "Iron", {141, 162, 196}}}
 {
 }
 
