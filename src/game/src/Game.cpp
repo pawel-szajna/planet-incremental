@@ -35,8 +35,9 @@ extern "C"
 
 void raylibLog(int severity, const char* text, va_list args)
 {
-    static char formatted[256]; // MAX_TRACELOG_MSG_LENGTH
-    vsprintf(formatted, text, args);
+    constexpr static auto limit{256u}; // MAX_TRACELOG_MSG_LENGTH
+    static char formatted[limit];
+    vsnprintf(formatted, limit, text, args);
     switch (severity)
     {
     case LOG_DEBUG:
